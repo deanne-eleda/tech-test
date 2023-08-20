@@ -1,0 +1,33 @@
+export default class CartItem {
+    constructor(
+        productCode,
+        productName,
+        months,
+        quantity,
+        regularPrice,
+        applyPromo,
+        totalSales,
+        addParameters,
+    ) {
+        this.productCode = productCode,
+            this.productName = productName,
+            this.months = months,
+            this.quantity = quantity,
+            this.regularPrice = regularPrice,
+            this.applyPromo = applyPromo,
+            this.totalSales = totalSales,
+            this.addParameters = addParameters
+    }
+
+    //update quantity and total
+    update(isFree = false) {
+        this.quantity++
+        if (!isFree) {
+            if (this.applyPromo != null) {
+                this.totalSales = this.applyPromo(this)
+            } else {
+                this.totalSales += this.regularPrice
+            }
+        }
+    }
+}
